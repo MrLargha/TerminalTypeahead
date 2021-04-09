@@ -28,7 +28,11 @@ class CallChain(private val chain: List<Call>) {
                     if (currentVariableExpression == null) {
                         call.expression.clone()
                     } else {
-                        (call.expression.clone() as? VarReplaceableExpression)?.also { it.replaceVar(currentVariableExpression as Expression) }
+                        (call.expression.clone() as? VarReplaceableExpression)?.also {
+                            it.replaceVar(
+                                currentVariableExpression as Expression
+                            )
+                        }
                             ?: currentVariableExpression
                     }
                 map = MapCall(currentVariableExpression.clone())
@@ -42,7 +46,14 @@ class CallChain(private val chain: List<Call>) {
                         newFilterExpression
                     else BinaryExpression(
                         currentFilterExpression,
-                        call.expression.clone(),
+                        call.expression.clone()
+                            .also {
+                                if (it is VarReplaceableExpression) currentVariableExpression?.let { currentVar ->
+                                    it.replaceVar(
+                                        currentVar
+                                    )
+                                }
+                            },
                         BinaryOperator.AND
                     ))
                 filter = FilterCall(currentFilterExpression.clone())

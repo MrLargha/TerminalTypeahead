@@ -16,8 +16,9 @@ class CallChainTest {
             "map{(element - 100)}%>%map{(element * 2)}%>%filter{((element * element) > 100)}%>%map{(element*10)}" to { x: List<Int> ->
                 x.map { it - 100 }.map { it * 2 }.filter { (it * it) > 100 }.map { it * 10 }
             },
-
-            )
+            "map{(element + 10)}%>%filter{(element > 10)}%>%map{(element * element)}%>%filter{(element > 100)}" to
+                    { x: List<Int> -> x.map { it + 10 }.filter { it > 10 }.map { it * it }.filter { it > 100 } }
+        )
         val wrongTypeExpressions = mutableListOf(
             "map{(element>10)}%>%map{(element<20)}",
             "map{(element>0)}%>%map{(element<0)}%>%filter{(element*element)"
