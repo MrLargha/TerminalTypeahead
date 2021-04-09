@@ -5,7 +5,18 @@ import callchain.MapCall
 import exceptions.SyntaxException
 import java.text.ParseException
 
+/**
+ * Builder for call-chain objects
+ *
+ * @property expression an expression to be parsed into call-chain
+ * @see CallChain
+ */
 class CallChainBuilder(private val expression: String) {
+    /**
+     * Build a call-chain from given expression
+     *
+     * @return parsed call-chain
+     */
     fun build(): CallChain {
         val regex = """(filter|map)\{([a-z\(\)0-9\*\+\-\&\|\<\>\s\=]*)\}""".toRegex()
         val matches = regex.findAll(expression)
@@ -25,7 +36,7 @@ class CallChainBuilder(private val expression: String) {
                 }
             )
         }
-        if(result.isEmpty()) throw SyntaxException()
+        if (result.isEmpty()) throw SyntaxException()
         return CallChain(result)
     }
 }

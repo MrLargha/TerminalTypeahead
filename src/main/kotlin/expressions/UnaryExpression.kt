@@ -2,11 +2,13 @@ package expressions
 
 import operators.UnaryOperator
 
-class UnaryIntExpression(
+/**
+ * Expression, that represents pair of unary operator and another expression
+ */
+class UnaryExpression(
     private var ex: Expression,
     private val op: UnaryOperator
-) :
-    VarReplaceableExpression {
+) : VarReplaceableExpression {
 
     override fun evaluate(element: Int): Any {
         return op.apply(ex.evaluate(element))
@@ -21,5 +23,5 @@ class UnaryIntExpression(
 
     override fun toString() = "$op$ex"
 
-    override fun clone() = UnaryIntExpression(ex.clone(), op)
+    override fun clone() = UnaryExpression(ex.clone(), op)
 }

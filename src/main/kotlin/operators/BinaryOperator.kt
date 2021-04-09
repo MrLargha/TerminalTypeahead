@@ -1,5 +1,8 @@
 package operators
 
+/**
+ * Set of binary operators
+ */
 enum class BinaryOperator : IBinaryOperator {
     LESS {
         override fun apply(t1: Any, t2: Any) = (t1 as Int) < (t2 as Int)

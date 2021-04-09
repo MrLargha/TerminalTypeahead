@@ -1,6 +1,9 @@
 import exceptions.WrongExpressionTypeException
 import kotlin.test.*
 
+/**
+ * Tests for call-chains
+ */
 class CallChainTest {
     companion object {
         val expressions = mutableMapOf(
@@ -26,6 +29,9 @@ class CallChainTest {
         val data = List(1000) { it - 500 }
     }
 
+    /**
+     * Test, that we can evaluate call-chains correctly
+     */
     @Test
     fun simpleEvaluatingTest() {
         expressions.entries.forEach { entry ->
@@ -37,6 +43,10 @@ class CallChainTest {
         }
     }
 
+    /**
+     * Test, that we can simplify call-chains into filter-map
+     * For test, we compare evaluation results for normal and simplified chains
+     */
     @Test
     fun simplifyTest() {
         expressions.entries.forEach { entry ->
@@ -50,6 +60,9 @@ class CallChainTest {
         }
     }
 
+    /**
+     * Test, that irregular expressions cannot be evaluated, and correct expression will be thrown
+     */
     @Test
     fun wrongExpressionTypeTest() {
         wrongTypeExpressions.forEach {

@@ -3,20 +3,31 @@ import expressions.*
 import operators.BinaryOperator
 import operators.UnaryOperator
 import java.lang.NumberFormatException
-import kotlin.math.exp
 
+/**
+ * Builder for Expression objects
+ *
+ * @see Expression
+ */
 class ExpressionBuilder(private val expressionString: String) {
     private var currentPosition = 0
     private var openedBrackets = 0
 
     companion object {
+        /**
+         * Build expression from given string using ExpressionBuilder
+         *
+         * @param expression - string with expression to be parsed
+         * @return parsed expression
+         * @throws SyntaxException if any syntax error in give string
+         */
         fun build(expression: String): Expression {
             val builder = ExpressionBuilder(expression.replace(" ", ""))
-            return builder.internalBuild()
+            return builder.buildImpl()
         }
     }
 
-    private fun internalBuild(): Expression {
+    private fun buildImpl(): Expression {
         val expr = build(0)
 
         if (openedBrackets != 0 || currentPosition <= expressionString.lastIndex) {
@@ -48,7 +59,7 @@ class ExpressionBuilder(private val expressionString: String) {
                 expression = readSingle()
             }
             if (isMinus)
-                expression = UnaryIntExpression(expression, UnaryOperator.MINUS)
+                expression = UnaryExpression(expression, UnaryOperator.MINUS)
             return expression
         }
 

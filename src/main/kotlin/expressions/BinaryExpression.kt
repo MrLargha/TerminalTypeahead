@@ -2,6 +2,9 @@ package expressions
 
 import operators.BinaryOperator
 
+/**
+ * Expression, that consists of two expressions and operators between them
+ */
 class BinaryExpression(
     private var ex1: Expression,
     private var ex2: Expression,

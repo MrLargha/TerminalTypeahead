@@ -4,7 +4,17 @@ import exceptions.WrongExpressionTypeException
 import expressions.*
 import operators.BinaryOperator
 
+/**
+ * Representation of a call-chain
+ */
 class CallChain(private val chain: List<Call>) {
+
+    /**
+     * Sequentially apply each function from the call-chain to the list
+     *
+     * @param list list to be transformed by a call-chain
+     * @return transformed list
+     */
     fun apply(list: List<Int>): List<Int> {
         var newList: List<Int> = list
         try {
@@ -17,6 +27,12 @@ class CallChain(private val chain: List<Call>) {
         return newList
     }
 
+    /**
+     * Transform call-chain to a filter-map
+     * Main feature for JB task for internship
+     *
+     * @return filter%>%map calls
+     */
     fun toFilterMap(): CallChain {
         var filter: FilterCall? = null
         var map: MapCall? = null

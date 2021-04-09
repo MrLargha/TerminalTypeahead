@@ -5,6 +5,9 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlin.test.Test
 
+/**
+ * Tests for boolean expressions
+ */
 class BoolExpressionTest {
     companion object {
         val simpleMathExpressions = mapOf(

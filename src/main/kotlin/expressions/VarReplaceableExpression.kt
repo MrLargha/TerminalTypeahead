@@ -8,5 +8,10 @@ package expressions
  * @see Expression
  */
 interface VarReplaceableExpression: Expression {
+    /**
+     * Replaces all variables by given expression
+     *
+     * @param expression replacement expression
+     */
     fun replaceVar(expression: Expression)
 }
